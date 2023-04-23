@@ -1,6 +1,15 @@
 import { DataStore } from "aws-amplify";
 import { useState } from "react";
 import { Todo } from "./models";
+import {
+  Button,
+  CheckboxField,
+  Flex,
+  Text,
+  TextAreaField,
+  TextField,
+  View,
+} from "@aws-amplify/ui-react";
 
 const TodoItem = ({ todo }) => {
   const [isEditing, setIsEditing] = useState(false);
@@ -9,34 +18,15 @@ const TodoItem = ({ todo }) => {
   const [completed, setCompleted] = useState(todo.completed);
 
   const handleUpdate = async (event) => {
-    // event.preventDefault();
+    const original = await DataStore.query(Todo, todo.id);
 
-    const updatedTodo = {
-      id: todo.id,
-      name,
-      description,
-      completed,
-    };
-
-    const original = await DataStore.query(updatedTodo, updatedTodo.id);
-
-    // const updatedPost = await DataStore.save(
-    //   Post.copyOf(original, updated => {
-    //     updated.title = newTitle
-    //   })
-    // );
-
-    try {
-      await DataStore.save(
-        Todo.copyOf(updatedTodo, (updated) => {
-          updated = updatedTodo;
-        })
-      );
-      setName("");
-      setDescription("");
-    } catch (error) {
-      console.log("error creating todo:", error);
-    }
+    await DataStore.save(
+      Todo.copyOf(original, (updated) => {
+        updated.name = name;
+        updated.description = description;
+        updated.completed = completed;
+      })
+    );
   };
 
   const handleDelete = async () => {
@@ -52,48 +42,69 @@ const TodoItem = ({ todo }) => {
   };
 
   return (
-    <li>
+    <>
       {isEditing ? (
-        <form onSubmit={handleUpdate}>
-          <input
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-          <br />
-          <textarea
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-          />
-          <br />
-          <label>
-            <input
-              type="checkbox"
-              checked={completed}
-              onChange={(e) => setCompleted(e.target.checked)}
+        <View>
+          <form onSubmit={handleUpdate}>
+            <TextField
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
             />
-            Completed
-          </label>
-          <br />
-          <button type="submit">Save</button>
-          <button type="button" onClick={() => setIsEditing(false)}>
-            Cancel
-          </button>
-        </form>
+            <br />
+            <TextAreaField
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            />
+            <br />
+            <label>
+              <input
+                type="checkbox"
+                checked={completed}
+                onChange={(e) => setCompleted(e.target.checked)}
+              />
+              Completed
+            </label>
+            <br />
+            <Button type="submit" variantion="link">
+              Save
+            </Button>
+            <Button
+              type="button"
+              variantion="default"
+              onClick={() => setIsEditing(false)}
+            >
+              Cancel
+            </Button>
+          </form>
+        </View>
       ) : (
         <>
-          {todo.name} - {todo.description} -{" "}
-          {todo.completed ? "Completed" : "Not completed"}
-          <br />
-          <button type="button" onClick={() => setIsEditing(true)}>
-            Edit
-          </button>
-          <button type="button" onClick={handleDelete}>
-            Delete
-          </button>
+          <View>
+            <Flex>
+              <Text>
+                {todo.name} - {todo.description} -{" "}
+                {todo.completed ? "Completed" : "Not completed"}
+              </Text>
+              <Button
+                type="button"
+                variantion="primary"
+                onClick={() => setIsEditing(true)}
+              >
+                Edit
+              </Button>
+              <Button
+                type="button"
+                variation="destructive"
+                onClick={handleDelete}
+              >
+                Delete
+              </Button>
+            </Flex>
+          </View>
         </>
       )}
-    </li>
+    </>
   );
 };
 export default TodoItem;

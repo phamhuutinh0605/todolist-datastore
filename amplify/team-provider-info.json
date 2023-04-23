@@ -17,6 +17,21 @@
       },
       "auth": {
         "amplifydatastore029e722e": {}
+      },
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "dgr4up1myzdxr",
+          "type": "manual"
+        }
+      },
+      "function": {
+        "S3Trigger3ec7938d": {
+          "deploymentBucketName": "amplify-amplify-datastore-dev-164556-deployment",
+          "s3Key": "amplify-builds/S3Trigger3ec7938d-676a7a4c467369656872-build.zip"
+        }
+      },
+      "storage": {
+        "s30d0f443d": {}
       }
     }
   }

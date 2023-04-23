@@ -11,3 +11,18 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.frm__add{
+  width: 1024px;
+  margin: auto;
+}
+/* form{
+  width: 1024px;
+  margin: auto;
+} */
+ul{
+  width: 1024px;
+  margin: auto;
+}
+.btn__logout{
+  margin-left: 200px;
+}

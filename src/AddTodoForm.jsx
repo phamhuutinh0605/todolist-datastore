@@ -1,7 +1,9 @@
-import { useState } from 'react'
+import { useState } from 'react';
 import { DataStore } from "@aws-amplify/datastore";
 import { Todo } from "./models";
-const AddTodoForm=()=> {
+import { Button, TextField } from '@aws-amplify/ui-react';
+
+const AddTodoForm=({uploadImg})=> {
   const [name, setName] = useState('')
   const [description, setDescription] = useState('')
 
@@ -24,20 +26,24 @@ const AddTodoForm=()=> {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className='frm__add'>
       <h3>Add a new todo:</h3>
-      <label>
-        Name:
-        <input type="text" value={name} onChange={e => setName(e.target.value)} />
-      </label>
+      <TextField
+        label="Name"
+        value={name}
+        onChange={e => setName(e.target.value)}
+      />
       <br />
-      <label>
-        Description:
-        <textarea value={description} onChange={e => setDescription(e.target.value)} />
-      </label>
+      <TextField
+        label="Description"
+        value={description}
+        onChange={e => setDescription(e.target.value)}
+        multiline
+      />
       <br />
-      <button type="submit">Add</button>
+      <Button variant="contained" color="primary" type="submit" onClick={uploadImg}>Add</Button>
     </form>
   )
 }
+
 export default AddTodoForm;

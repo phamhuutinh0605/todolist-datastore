@@ -3,6 +3,8 @@ import { useEffect } from "react";
 import TodoItem from "./TodoItem";
 import { DataStore } from "@aws-amplify/datastore";
 import { Todo } from "./models";
+import { View } from "@aws-amplify/ui-react";
+
 const TodoList = () => {
   const [todos, setTodos] = useState([]);
 
@@ -20,20 +22,14 @@ const TodoList = () => {
   }, []);
   console.log(todos);
   return (
-    <div>
-      <h2>Todos:</h2>
+    <View>
       <ul>
-        {/* {todos.map(todo => (
-          <li key={todo.id}>
-            {todo.name} - {todo.description} - {todo.completed ? 'Completed' : 'Not completed'}
-          </li>
-        ))} */}
-
+      <h2>Todos:</h2>
         {todos.map((todo) => {
-          return <TodoItem todo={todo} />;
+          return <TodoItem todo={todo} key={todo.id} />;
         })}
       </ul>
-    </div>
+    </View>
   );
 };
 export default TodoList;
