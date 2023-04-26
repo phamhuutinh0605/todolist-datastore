@@ -81,25 +81,29 @@ const TodoItem = ({ todo }) => {
       ) : (
         <>
           <View>
-            <Flex>
+            <Flex style={{ display: "flex", justifyContent: "space-between" ,padding:10}}>
               <Text>
-                {todo.name} - {todo.description} -{" "}
-                {todo.completed ? "Completed" : "Not completed"}
+                {todo.name} - {todo.description}
+                {todo.completed ? " - Completed" : " - Not completed"}
               </Text>
-              <Button
-                type="button"
-                variantion="primary"
-                onClick={() => setIsEditing(true)}
-              >
-                Edit
-              </Button>
-              <Button
-                type="button"
-                variation="destructive"
-                onClick={handleDelete}
-              >
-                Delete
-              </Button>
+              <div>
+                <Button
+                  type="button"
+                  variantion="primary"
+                  onClick={() => setIsEditing(true)}
+                >
+                  Edit
+                </Button>
+                <Button
+                  type="button"
+                  variation="destructive"
+                  onClick={handleDelete}
+                  style={{marginLeft:10}}
+
+                >
+                  Delete
+                </Button>
+              </div>
             </Flex>
           </View>
         </>

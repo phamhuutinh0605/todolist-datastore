@@ -41,7 +41,8 @@ const AddTodoForm=({uploadImg})=> {
         multiline
       />
       <br />
-      <Button variant="contained" color="primary" type="submit" onClick={uploadImg}>Add</Button>
+      <br />
+      <Button variant="contained" color="primary" type="submit">Add</Button>
     </form>
   )
 }

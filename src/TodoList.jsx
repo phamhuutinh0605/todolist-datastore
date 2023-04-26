@@ -26,7 +26,7 @@ const TodoList = () => {
       <ul>
       <h2>Todos:</h2>
         {todos.map((todo) => {
-          return <TodoItem todo={todo} key={todo.id} />;
+          return <TodoItem todo={todo} key={todo.id}/>;
         })}
       </ul>
     </View>
