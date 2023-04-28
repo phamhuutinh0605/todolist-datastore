@@ -12,17 +12,14 @@
       "AmplifyAppId": "dgr4up1myzdxr"
     },
     "categories": {
-      "api": {
-        "amplifyDatasource": {}
-      },
-      "auth": {
-        "amplifydatastore029e722e": {}
-      },
       "hosting": {
         "amplifyhosting": {
           "appId": "dgr4up1myzdxr",
           "type": "manual"
         }
+      },
+      "auth": {
+        "amplifydatastore029e722e": {}
       },
       "function": {
         "S3Trigger3ec7938d": {

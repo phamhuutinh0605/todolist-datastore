@@ -1,4 +1,4 @@
-import { Button, Link, withAuthenticator } from "@aws-amplify/ui-react";
+import { Button, Image, Link, withAuthenticator } from "@aws-amplify/ui-react";
 import "@aws-amplify/ui-react/styles.css";
 
 import awsExports from "./aws-exports";
@@ -40,10 +40,11 @@ function App({ signOut, user }) {
   return (
     <>
       <div style={{ maxWidth: 1024, margin: "auto" }}>
-        <h1 className="">
-          Hello {user.username} - <Link href={image}>Avatar</Link>
-        </h1>
-        <div style={{display:"flex",justifyContent:"space-between"}}>
+        <div style={{ display: "flex", justifyContent: "space-between",alignItems:"center" }}>
+          <h1 className="">Hello {user.username}</h1>
+          <Image src={image} alt="avatar-person" width={60} height={60} style={{borderRadius:50,border:"4px solid black"}}/>
+        </div>
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
           <input type="file" onChange={uploadImg} />
           <Button
             type="button"
